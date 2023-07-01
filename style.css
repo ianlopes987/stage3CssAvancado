@@ -1,0 +1,206 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-snoothing: antialiased;
+    -moz-osx-font-snoothing: grayscale;
+}
+
+:root{
+    font-size: 62.5%;
+    --color-base-white: #ffffff;
+    --color-base-gray-100: #f5f5f5;
+    --color-base-gray-900: #202024;
+    --color-base-gray-300: #8d8d99;
+    --color-base-gray-500: #3d3d3d;
+}
+
+
+body{
+    font-family: 'Mulish', sans-serif;
+    font-size: 1.6rem;
+    background-color: var(--color-base-white);
+}
+
+
+#page{
+    display: grid;
+    grid-template-rows: max-content 1fr max-content; /*separa o grid dando o espaco do conteudo para o header, 1 fracao para o main e o spaco do conteudo para o footer*/
+    height: 100vh; /* altura total da pagina */ 
+}
+
+
+.container{
+    padding: 1.6rem 3.2rem;
+    width: min(112rem,100%); /* a partir de 1120px ele nao cresce mais */
+    margin: 0 auto;
+
+}
+
+main{
+    overflow-y: scroll; /* libera a rolagem de pagina somente para esse elemento em especifico */
+    background-color: var(--color-base-gray-100);
+}
+
+header, nav, nav ul{
+    display: flex;
+    align-items: center;
+    gap: 7.2rem;
+    font-weight: 700;
+}
+
+header form{
+    flex: 1; /* o flex 1 faz o elemento ocupar todo o espaço disponível para ele. */ 
+}
+
+header nav ul{
+
+    list-style: none;
+    font-size: 1.8rem;
+    color: var(--color-base-gray-300);
+}
+
+ul li.active{
+    color: var(--color-base-gray-300);
+}
+
+ul li:hover{
+    color: black;
+}
+
+.input-wrapper label{
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    /* comandos usados para ocultar o label. o motivo de ocultar é por conta de acessibilidade */ 
+}
+
+.input-wrapper input{
+    width: 100%;
+    padding: 1.6rem;
+    background-color: var(--color-base-gray-100);
+    border: 0;
+    border-radius: .6rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    opacity: 0.56;
+}
+
+.input-wrapper input::placeholder{
+    opacity: 0.56;
+    color: var(--color-base-gray-500);
+}
+
+.avatar{
+    width: 4.2rem;
+    height: 4.2rem;
+    object-fit: cover; /* esse elemento é usado para que a imagem se ajuste perfeitamente*/
+    border-radius: 50%;
+}
+
+/* galeria */
+
+main h1{
+    font-size: 2.4rem;
+    padding-top: 1.6rem;
+}
+
+.gallery{
+    margin-top: 3.2rem;
+    display: grid;
+    grid-template-columns: repeat(3,1fr); /* faz com que a galeria mostre no formato de 3 colunas com uma fração para cada. entao da maneira do projeto sera apresentado 3 fotos por cada linha*/
+    gap: 2.2rem;
+}
+
+.item{
+    background-color: var(--color-base-white);
+    border-radius: .8rem;
+    overflow: hidden; /* esconde o transbordo do conteudo*/
+}
+
+.item img{
+    width: 100%;
+    aspect-ratio: 16/9; /* usado para que a foto esteja em um forma 16/9 ou seja pequena */
+    object-fit: cover; /* formato em que a foto se encaixa*/
+    transition-property: all; /* indicamos a propriedade onde queremos aplicar a transition ex. transorm ou filter, all é em todas*/
+    transition-duration:500ms; /* essa determina a duração da transicao, ou seja quanto tempo ela vai durar */ 
+    transition-timing-function: ease-out; /* determina quando a curva vai fazer, ou seja, começa mais rapido e termina mais devagar... etc*/
+}
+
+.item img:hover{
+    filter: hue-rotate(7deg) contrast(101%) saturate(200%);
+    /* o filter altera algumas propriedades da imagem como constraste, saturação, brilho e etc...*/
+    transform: scale(1.5) rotate(-2deg); /* o transforma scale esta aumentando a imagem dando uma especie de zoom nela ao colocar o mouse por cima e o rotate esta rotacionando a pagina*/ 
+}
+
+
+.details{
+    padding: 2.2rem;
+    background-color: var(--color-base-white);
+    z-index: 1; /* deixando o details a frente da imagem, para quando o transform ser aplicado a imagem nao ficar por cima do details */ 
+    position: relative;
+}
+
+.details h2{
+    font-size: 1.8rem;
+
+}
+
+.tags{
+    margin-top: 1rem;
+}
+
+.tags span{
+    padding: .6rem;
+    background-color: var(--color-base-gray-100);
+    border-radius: .4rem;
+    line-height: 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+
+footer p {
+    text-align: center;
+    padding: 1.6rem;
+    font-weight: 600;
+}
+
+header{
+    --startY: -100%; /* variavel para definir o animation*/
+    animation: move .2s;
+}
+
+footer{
+    --startY: 100%; /* variavel para definir o animatil no footer */
+    animation: move .2s;
+}
+
+@keyframes move{
+    from{
+        transform: translateY(var(--startY)); /* usando animation*/
+    }
+}
+
+.item{
+    animation: appear .4s backwards; /* puxando animation no items*/
+}
+
+@keyframes appear{
+    0%{
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    50%{
+        transform: scale(1.2);
+    }
+}
+
+
+
+
+
+
+
